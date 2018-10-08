@@ -13,6 +13,7 @@ import Uncontrolled from './Uncontrolled'
 import Welcome from './Welcome'
 import ZoomImage from './ZoomImage'
 import ZoomOnLoad from './ZoomOnLoad'
+import DirectLink from './DirectLink'
 
 storiesOf('react-medium-image-zoom', module)
   .add('README', () => <Welcome />)
@@ -32,3 +33,4 @@ storiesOf('react-medium-image-zoom', module)
   .add("Respect image's tab index", () => <ShouldRespectTabIndex />)
   .add('Zoom on load', () => <ZoomOnLoad />)
   .add('Deactivate on load error', () => <DisableOnError />)
+  .add('Show direct link', () => <DirectLink />)

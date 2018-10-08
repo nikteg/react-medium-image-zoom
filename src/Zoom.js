@@ -4,6 +4,7 @@ import defaults from './defaults'
 import { fetchImage, getMaxDimensionScale, getScale } from './helpers'
 
 import Overlay from './Overlay'
+import DirectLink from './DirectLink'
 
 /**
  * The `tmpSrc` and `TmpImg` code here is a workaround
@@ -37,7 +38,9 @@ export default class Zoom extends Component {
   }
 
   componentDidMount() {
-    const { zoomImage: { src, srcSet } } = this.props
+    const {
+      zoomImage: { src, srcSet }
+    } = this.props
 
     this.setState({ hasLoaded: true })
 
@@ -57,7 +60,7 @@ export default class Zoom extends Component {
 
   render() {
     const {
-      props: { defaultStyles, zoomImage },
+      props: { defaultStyles, zoomImage, showDirectLink },
       state: { tmpSrc, isZoomed, src }
     } = this
 
@@ -66,6 +69,13 @@ export default class Zoom extends Component {
     return (
       <div style={this._getZoomContainerStyle()}>
         <Overlay isVisible={isZoomed} defaultStyles={defaultStyles} />
+        {showDirectLink &&
+          <DirectLink
+            isVisible={isZoomed}
+            defaultStyles={defaultStyles}
+            href={zoomImage.src || src}
+          />
+        }
         <img {...zoomImage} src={src} style={style} />
         <TmpImg {...zoomImage} src={tmpSrc} style={style} />
       </div>
@@ -163,7 +173,8 @@ Zoom.propTypes = {
     style: object
   }).isRequired,
   zoomMargin: number.isRequired,
-  onUnzoom: func.isRequired
+  onUnzoom: func.isRequired,
+  showDirectLink: bool.isRequired
 }
 
 const TmpImg = ({ src, style, ...props }) =>

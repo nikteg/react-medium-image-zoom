@@ -41,7 +41,8 @@ export default class ImageZoom extends Component {
       },
       shouldHandleZoom: () => true,
       onZoom: () => {},
-      onUnzoom: () => {}
+      onUnzoom: () => {},
+      showDirectLink: false
     }
   }
 
@@ -151,6 +152,7 @@ export default class ImageZoom extends Component {
             zoomImage={this.props.zoomImage}
             zoomMargin={this.props.zoomMargin}
             onUnzoom={this._handleUnzoom}
+            showDirectLink={this.props.showDirectLink}
           />
         </EventsWrapper>
        : null
@@ -290,5 +292,6 @@ ImageZoom.propTypes = {
   shouldReplaceImage: bool,
   shouldRespectMaxDimension: bool,
   onZoom: func,
-  onUnzoom: func
+  onUnzoom: func,
+  showDirectLink: bool
 }
